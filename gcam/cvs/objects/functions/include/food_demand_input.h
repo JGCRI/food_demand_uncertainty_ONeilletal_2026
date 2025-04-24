@@ -138,6 +138,8 @@ public:
 
     double getScaleParam() const;
 
+    double getStaplesFixedEffect() const;
+
     virtual double calcPriceExponent( const FoodDemandInput* aOther,
                                       double aAdjIncome,
                                       const std::string& aRegionName,
@@ -383,6 +385,8 @@ protected:
 
         //! Self price elasticity (g_ii)
         DEFINE_VARIABLE( SIMPLE, "self-price-elasticity", mSelfPriceElasticity, Value ),
+
+        DEFINE_VARIABLE( SIMPLE, "staples_FE", mStaplesFixedEffect, Value ),
 
         //! The actual share of the total budget (alpha)
         DEFINE_VARIABLE( ARRAY | STATE | NOT_PARSABLE, "share", mShare, objects::PeriodVector<Value> ),

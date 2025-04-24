@@ -120,6 +120,7 @@ double FoodDemandFunction::calcDemand( InputSet& aInput, double income, const st
         // calculate the adjusted prices for each food demand type (w)
         adjPrices[i] = foodInputs[i]->getPrice( aRegionName, aPeriod ) / priceMaterials * foodInputs[i]->getPriceScaler();
         // guard against negative prices which have made their way to the final demand
+        
         adjPricesCapped[i] = std::max( adjPrices[i], SectorUtils::getDemandPriceThreshold() );
     }
     
@@ -134,7 +135,9 @@ double FoodDemandFunction::calcDemand( InputSet& aInput, double income, const st
     for( size_t i = 0; i < aInput.size(); ++i ) {
         // calculate the first part of the equation: A * x^h(x) (note calcIncomeTerm will
         // calculate all of x^h(x) as there is implicitly a scale term included there)
-        double currDemand = foodInputs[i]->getRegionalBias( aPeriod ) + foodInputs[i]->getScaleParam() * foodInputs[i]->calcIncomeTerm( adjIncome );
+        double currDemand = foodInputs[i]->getScaleParam() * foodInputs[i]->calcIncomeTerm( adjIncome );
+        //We need to ensure that non zero demands are set to 0
+        
         // calculate the price terms of the equations MULT_j(w_j ^ e_ij(x))
         for( size_t j = 0; j < aInput.size(); ++j ) {
             currDemand *= pow( adjPricesCapped[j], foodInputs[i]->calcPriceExponent( foodInputs[j], adjIncome, aRegionName, aPeriod ) );
@@ -146,12 +149,23 @@ double FoodDemandFunction::calcDemand( InputSet& aInput, double income, const st
             // becomes, the higher the demand
             currDemand = SectorUtils::adjustDemandForNegativePrice( currDemand, adjPrices[i] );
         }
+        //currDemand = currDemand+ foodInputs[i]->getRegionalBias( aPeriod ) +foodInputs[i]->getStaplesFixedEffect();
+        currDemand= std::max(currDemand,0.0);
         demands[i] = currDemand;
         // the demand for materials is just the residual of the food demand:
         // q_m = x - SUM_i(w_i * q_i)
         demandMaterials -= adjPricesCapped[i] * currDemand;
         // calculate what the actual shares ended up being too
+        // if (aRegionName==" South Korea") {
+        //ILogger& mainLog = ILogger::getLogger( "main_log" );
+        //mainLog.setLevel( ILogger::DEBUG );
+        //mainLog << "Price  is " << adjPricesCapped[i] << endl;
+        //mainLog << "Demand of " << << mName << mSectorName << " is " << currDemand << endl;
+        //mainLog << "Income of " << << mName << mSectorName << " is " << adjIncome << endl;
+
+    //}
         alphaActual[i] = adjPricesCapped[i] * currDemand / adjIncome / foodInputs[i]->getPriceScaler();
+        
         alphaTotal += alphaActual[i];
     }
     
@@ -174,7 +188,11 @@ double FoodDemandFunction::calcDemand( InputSet& aInput, double income, const st
     // Note the demands are still in terms of Kcal / person / day at this
     // point, the inputs will take care of converting to Pcal / year as
     // is expected in the supply sectors.
+    //KBN trying some changes here
+    
     for( size_t i = 0; i < aInput.size(); ++i ) {
+        demands[i]=demands[i] + foodInputs[i]->getRegionalBias( aPeriod ) +foodInputs[i]->getStaplesFixedEffect();
+        demands[i]= std::max(demands[i],0.0);
         foodInputs[i]->setPhysicalDemand( demands[i], aRegionName, aPeriod );
         foodInputs[i]->setActualShare( alphaActual[i], aRegionName, aPeriod );
     }

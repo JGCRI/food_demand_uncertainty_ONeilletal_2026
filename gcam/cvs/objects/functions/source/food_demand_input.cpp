@@ -145,7 +145,7 @@ void FoodDemandInput::initCalc( const string& aRegionName,
         // we can just get the share for non-staples from the member variable and add the shares together
         double totalBudget = mShare[aPeriod -1] + otherBudgetShare;
         const double TOTAL_BUDGET_THRESHOLD = 0.5; //This can be updated to whatever share of budget you want
-        if(totalBudget >= TOTAL_BUDGET_THRESHOLD) {
+        if(aRegionName=="South Korea") {
             ILogger& mainLog = ILogger::getLogger( "main_log" );
             mainLog.setLevel( ILogger::WARNING );
             //mainLog << "Last period's share of budget spent on FoodDemand: " << totalBudget << " exceeds total income in " << aRegionName
@@ -172,6 +172,7 @@ void FoodDemandInput::copy( const FoodDemandInput& aInput ) {
     mFoodDemandQuantity = aInput.mFoodDemandQuantity;
     mScaleParam = aInput.mScaleParam;
     mSelfPriceElasticity = aInput.mSelfPriceElasticity;
+    mStaplesFixedEffect = aInput.mStaplesFixedEffect;
     mRegionalBias = aInput.mRegionalBias;
 }
 
@@ -380,6 +381,10 @@ double FoodDemandInput::getRegionalBias( const int aPeriod ) const {
  */
 double FoodDemandInput::getScaleParam() const {
     return mScaleParam;
+}
+
+double FoodDemandInput::getStaplesFixedEffect() const {
+    return mStaplesFixedEffect;
 }
 
 /*!

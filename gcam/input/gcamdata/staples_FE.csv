@@ -1,0 +1,545 @@
+measure,GCAM_region_ID,staples_FE,region
+HD_Qs,15,0.609589251,Europe_Non_EU
+HD_Qs,11,0.248332536,China
+HD_Qs,17,-0.214091896,India
+HD_Qs,13,-0.182297791,EU-15
+HD_Qs,5,0.093643344,Africa_Western
+HD_Qs,1,-0.294831035,USA
+HD_Qs,29,0.007018665,Southeast Asia
+HD_Qs,18,0.135669923,Indonesia
+HD_Qs,2,-0.312415564,Africa_Eastern
+HD_Qs,27,0.118831877,South Asia
+HD_Qs,7,-0.352325001,Brazil
+HD_Qs,21,0.304829709,Middle East
+HD_Qs,22,-0.202807521,Pakistan
+HD_Qs,23,0.189233273,Russia
+HD_Qs,4,-0.131567433,Africa_Southern
+HD_Qs,19,-0.07303113,Japan
+HD_Qs,3,0.525654778,Africa_Northern
+HD_Qs,20,0.245159291,Mexico
+HD_Qs,12,0.065012979,EU-12
+HD_Qs,10,0.152744565,Central Asia
+HD_Qs,26,-0.133427123,South America_Southern
+HD_Qs,14,-0.064744089,Europe_Eastern
+HD_Qs,9,-0.424870323,Central America and Caribbean
+HD_Qs,24,0.351736264,South Africa
+HD_Qs,28,0.574493569,South Korea
+HD_Qs,32,-0.280787088,Colombia
+HD_Qs,31,-0.07004912,Argentina
+HD_Qs,8,-0.321638663,Canada
+HD_Qs,25,-0.202896828,South America_Northern
+HD_Qs,6,-0.457080146,Australia_NZ
+HD_Qs,30,0,Taiwan
+HD_Qs,16,-0.358649307,European Free Trade Association
+LD_Qs,15,0.625765621,Europe_Non_EU
+LD_Qs,11,0.132634366,China
+LD_Qs,17,-0.246736882,India
+LD_Qs,13,-0.274789658,EU-15
+LD_Qs,5,-0.021936118,Africa_Western
+LD_Qs,1,-0.38893818,USA
+LD_Qs,29,0.057311053,Southeast Asia
+LD_Qs,18,0.174302848,Indonesia
+LD_Qs,2,-0.374914788,Africa_Eastern
+LD_Qs,27,0.18823059,South Asia
+LD_Qs,7,-0.266862677,Brazil
+LD_Qs,21,0.329974911,Middle East
+LD_Qs,22,-0.090685761,Pakistan
+LD_Qs,23,0.164950929,Russia
+LD_Qs,4,-0.152937839,Africa_Southern
+LD_Qs,19,-0.016499382,Japan
+LD_Qs,3,0.452642826,Africa_Northern
+LD_Qs,20,0.13965109,Mexico
+LD_Qs,12,0.099103258,EU-12
+LD_Qs,10,0.180726161,Central Asia
+LD_Qs,26,-0.200086569,South America_Southern
+LD_Qs,14,0.009686826,Europe_Eastern
+LD_Qs,9,-0.396658162,Central America and Caribbean
+LD_Qs,24,0.365455698,South Africa
+LD_Qs,28,0.493261098,South Korea
+LD_Qs,32,-0.372485097,Colombia
+LD_Qs,31,-0.115927395,Argentina
+LD_Qs,8,-0.295020878,Canada
+LD_Qs,25,-0.115195564,South America_Northern
+LD_Qs,6,-0.449220874,Australia_NZ
+LD_Qs,30,0,Taiwan
+LD_Qs,16,-0.358916238,European Free Trade Association
+HD_Qn,15,0.585374257,Europe_Non_EU
+HD_Qn,11,0.166884555,China
+HD_Qn,17,-0.188830207,India
+HD_Qn,13,-0.156719998,EU-15
+HD_Qn,5,-0.073737021,Africa_Western
+HD_Qn,1,-0.291729086,USA
+HD_Qn,29,0.055766563,Southeast Asia
+HD_Qn,18,0.200924698,Indonesia
+HD_Qn,2,-0.349146692,Africa_Eastern
+HD_Qn,27,0.248281763,South Asia
+HD_Qn,7,-0.228054383,Brazil
+HD_Qn,21,0.324401002,Middle East
+HD_Qn,22,-0.119674498,Pakistan
+HD_Qn,23,0.130613393,Russia
+HD_Qn,4,-0.111066033,Africa_Southern
+HD_Qn,19,0.007943069,Japan
+HD_Qn,3,0.518299511,Africa_Northern
+HD_Qn,20,0.1803609,Mexico
+HD_Qn,12,0.070231707,EU-12
+HD_Qn,10,0.136478167,Central Asia
+HD_Qn,26,-0.179751002,South America_Southern
+HD_Qn,14,-0.128365091,Europe_Eastern
+HD_Qn,9,-0.405763173,Central America and Caribbean
+HD_Qn,24,0.445535545,South Africa
+HD_Qn,28,0.488147866,South Korea
+HD_Qn,32,-0.387900332,Colombia
+HD_Qn,31,-0.058248453,Argentina
+HD_Qn,8,-0.304160611,Canada
+HD_Qn,25,-0.170599649,South America_Northern
+HD_Qn,6,-0.381614078,Australia_NZ
+HD_Qn,30,0,Taiwan
+HD_Qn,16,-0.378632324,European Free Trade Association
+LD_Qn,15,0.689442845,Europe_Non_EU
+LD_Qn,11,0.149202019,China
+LD_Qn,17,-0.198413995,India
+LD_Qn,13,-0.187636616,EU-15
+LD_Qn,5,-0.034836577,Africa_Western
+LD_Qn,1,-0.279119731,USA
+LD_Qn,29,0.029933681,Southeast Asia
+LD_Qn,18,0.185756951,Indonesia
+LD_Qn,2,-0.486220272,Africa_Eastern
+LD_Qn,27,0.209584388,South Asia
+LD_Qn,7,-0.187536817,Brazil
+LD_Qn,21,0.344001774,Middle East
+LD_Qn,22,-0.122606755,Pakistan
+LD_Qn,23,0.246977776,Russia
+LD_Qn,4,-0.126068002,Africa_Southern
+LD_Qn,19,-0.054609813,Japan
+LD_Qn,3,0.556033176,Africa_Northern
+LD_Qn,20,0.157412605,Mexico
+LD_Qn,12,0.110968445,EU-12
+LD_Qn,10,0.209340304,Central Asia
+LD_Qn,26,-0.110708792,South America_Southern
+LD_Qn,14,0.052957138,Europe_Eastern
+LD_Qn,9,-0.33658995,Central America and Caribbean
+LD_Qn,24,0.337325318,South Africa
+LD_Qn,28,0.533934917,South Korea
+LD_Qn,32,-0.321952256,Colombia
+LD_Qn,31,-0.183275069,Argentina
+LD_Qn,8,-0.266083229,Canada
+LD_Qn,25,-0.113187141,South America_Northern
+LD_Qn,6,-0.452123579,Australia_NZ
+LD_Qn,30,0,Taiwan
+LD_Qn,16,-0.2226287,European Free Trade Association
+HD_Qtot,2,-0.179821045,Africa_Eastern
+HD_Qtot,3,0.674405746,Africa_Northern
+HD_Qtot,4,0.105980395,Africa_Southern
+HD_Qtot,5,0.199677318,Africa_Western
+HD_Qtot,31,0.088224898,Argentina
+HD_Qtot,6,-0.224236022,Australia_NZ
+HD_Qtot,7,-0.05458779,Brazil
+HD_Qtot,8,-0.083048907,Canada
+HD_Qtot,9,-0.181565286,Central America and Caribbean
+HD_Qtot,10,0.373921286,Central Asia
+HD_Qtot,11,0.412745614,China
+HD_Qtot,32,-0.098406682,Colombia
+HD_Qtot,12,0.255565784,EU-12
+HD_Qtot,13,0.013153384,EU-15
+HD_Qtot,16,-0.074698645,European Free Trade Association
+HD_Qtot,14,0.239509989,Europe_Eastern
+HD_Qtot,15,0.79807109,Europe_Non_EU
+HD_Qtot,17,0.035871103,India
+HD_Qtot,18,0.37692468,Indonesia
+HD_Qtot,19,0.208515957,Japan
+HD_Qtot,20,0.406317647,Mexico
+HD_Qtot,21,0.468400436,Middle East
+HD_Qtot,22,0.05518203,Pakistan
+HD_Qtot,23,0.455009712,Russia
+HD_Qtot,24,0.608932861,South Africa
+HD_Qtot,25,0.048031399,South America_Northern
+HD_Qtot,26,0.051360334,South America_Southern
+HD_Qtot,27,0.418989748,South Asia
+HD_Qtot,29,0.243028983,Southeast Asia
+HD_Qtot,28,0.703020665,South Korea
+HD_Qtot,30,0,Taiwan
+HD_Qtot,1,-0.133494536,USA
+LD_Qtot,15,0.522086227,Europe_Non_EU
+LD_Qtot,11,0.225689161,China
+LD_Qtot,17,-0.188246913,India
+LD_Qtot,13,-0.24671285,EU-15
+LD_Qtot,5,0.050655063,Africa_Western
+LD_Qtot,1,-0.313197234,USA
+LD_Qtot,29,0.141182024,Southeast Asia
+LD_Qtot,18,0.177858145,Indonesia
+LD_Qtot,2,-0.279778283,Africa_Eastern
+LD_Qtot,27,0.237062622,South Asia
+LD_Qtot,7,-0.27872523,Brazil
+LD_Qtot,21,0.21975895,Middle East
+LD_Qtot,22,-0.143306174,Pakistan
+LD_Qtot,23,0.182125938,Russia
+LD_Qtot,4,-0.082816796,Africa_Southern
+LD_Qtot,19,0.085695502,Japan
+LD_Qtot,3,0.400071431,Africa_Northern
+LD_Qtot,20,0.099676641,Mexico
+LD_Qtot,12,0.028798054,EU-12
+LD_Qtot,10,0.220254504,Central Asia
+LD_Qtot,26,-0.186925063,South America_Southern
+LD_Qtot,14,0.01313217,Europe_Eastern
+LD_Qtot,9,-0.468476417,Central America and Caribbean
+LD_Qtot,24,0.421262145,South Africa
+LD_Qtot,28,0.531869208,South Korea
+LD_Qtot,32,-0.436954524,Colombia
+LD_Qtot,31,-0.198277019,Argentina
+LD_Qtot,8,-0.337205811,Canada
+LD_Qtot,25,-0.206491094,South America_Northern
+LD_Qtot,6,-0.435736728,Australia_NZ
+LD_Qtot,30,0,Taiwan
+LD_Qtot,16,-0.288275905,European Free Trade Association
+HD_QsQn,15,0.610585189,Europe_Non_EU
+HD_QsQn,11,0.202038689,China
+HD_QsQn,17,-0.163859973,India
+HD_QsQn,13,-0.172361458,EU-15
+HD_QsQn,5,-0.077580795,Africa_Western
+HD_QsQn,1,-0.345355075,USA
+HD_QsQn,29,0.005912018,Southeast Asia
+HD_QsQn,18,0.140153036,Indonesia
+HD_QsQn,2,-0.451610197,Africa_Eastern
+HD_QsQn,27,0.157374426,South Asia
+HD_QsQn,7,-0.252350836,Brazil
+HD_QsQn,21,0.200069369,Middle East
+HD_QsQn,22,-0.255539624,Pakistan
+HD_QsQn,23,0.191683352,Russia
+HD_QsQn,4,-0.086975272,Africa_Southern
+HD_QsQn,19,0.054717079,Japan
+HD_QsQn,3,0.444985111,Africa_Northern
+HD_QsQn,20,0.209489232,Mexico
+HD_QsQn,12,0.081482245,EU-12
+HD_QsQn,10,0.200420565,Central Asia
+HD_QsQn,26,-0.174879882,South America_Southern
+HD_QsQn,14,-0.007770845,Europe_Eastern
+HD_QsQn,9,-0.399277256,Central America and Caribbean
+HD_QsQn,24,0.319425592,South Africa
+HD_QsQn,28,0.555963586,South Korea
+HD_QsQn,32,-0.36685214,Colombia
+HD_QsQn,31,-0.184252002,Argentina
+HD_QsQn,8,-0.312117977,Canada
+HD_QsQn,25,-0.15869979,South America_Northern
+HD_QsQn,6,-0.356695759,Australia_NZ
+HD_QsQn,30,0,Taiwan
+HD_QsQn,16,-0.312374156,European Free Trade Association
+LD_QsQn,15,0.597690555,Europe_Non_EU
+LD_QsQn,11,0.288951218,China
+LD_QsQn,17,-0.198754232,India
+LD_QsQn,13,-0.174956692,EU-15
+LD_QsQn,5,0.129056431,Africa_Western
+LD_QsQn,1,-0.370141318,USA
+LD_QsQn,29,-0.0569536,Southeast Asia
+LD_QsQn,18,0.170667605,Indonesia
+LD_QsQn,2,-0.393149528,Africa_Eastern
+LD_QsQn,27,0.230156022,South Asia
+LD_QsQn,7,-0.248638719,Brazil
+LD_QsQn,21,0.240542178,Middle East
+LD_QsQn,22,-0.172996588,Pakistan
+LD_QsQn,23,0.18600593,Russia
+LD_QsQn,4,-0.089615876,Africa_Southern
+LD_QsQn,19,0.041792946,Japan
+LD_QsQn,3,0.469151064,Africa_Northern
+LD_QsQn,20,0.164828623,Mexico
+LD_QsQn,12,-0.042660809,EU-12
+LD_QsQn,10,0.118519395,Central Asia
+LD_QsQn,26,-0.243031993,South America_Southern
+LD_QsQn,14,0.028334028,Europe_Eastern
+LD_QsQn,9,-0.357415454,Central America and Caribbean
+LD_QsQn,24,0.339975035,South Africa
+LD_QsQn,28,0.526887938,South Korea
+LD_QsQn,32,-0.30313755,Colombia
+LD_QsQn,31,-0.024998076,Argentina
+LD_QsQn,8,-0.187485826,Canada
+LD_QsQn,25,-0.188424784,South America_Northern
+LD_QsQn,6,-0.391478708,Australia_NZ
+LD_QsQn,30,0,Taiwan
+LD_QsQn,16,-0.277656153,European Free Trade Association
+ML,2,-0.368022175,Africa_Eastern
+Lo_indep,2,-0.567755775,Africa_Eastern
+Hi_indep,2,-0.179821045,Africa_Eastern
+ML,3,0.460429256,Africa_Northern
+Lo_indep,3,0.252194973,Africa_Northern
+Hi_indep,3,0.674405746,Africa_Northern
+ML,4,-0.103053008,Africa_Southern
+Lo_indep,4,-0.318820785,Africa_Southern
+Hi_indep,4,0.105980395,Africa_Southern
+ML,5,-0.009595276,Africa_Western
+Lo_indep,5,-0.214814763,Africa_Western
+Hi_indep,5,0.199677318,Africa_Western
+ML,31,-0.157288881,Argentina
+Lo_indep,31,-0.361129318,Argentina
+Hi_indep,31,0.088224898,Argentina
+ML,6,-0.41197186,Australia_NZ
+Lo_indep,6,-0.611375821,Australia_NZ
+Hi_indep,6,-0.224236022,Australia_NZ
+ML,7,-0.26858937,Brazil
+Lo_indep,7,-0.467705784,Brazil
+Hi_indep,7,-0.05458779,Brazil
+ML,8,-0.300806662,Canada
+Lo_indep,8,-0.504137625,Canada
+Hi_indep,8,-0.083048907,Canada
+ML,9,-0.391096403,Central America and Caribbean
+Lo_indep,9,-0.590383025,Central America and Caribbean
+Hi_indep,9,-0.181565286,Central America and Caribbean
+ML,10,0.145528419,Central Asia
+Lo_indep,10,-0.048412018,Central Asia
+Hi_indep,10,0.373921286,Central Asia
+ML,11,0.201888532,China
+Lo_indep,11,-0.021721883,China
+Hi_indep,11,0.412745614,China
+ML,32,-0.307541991,Colombia
+Lo_indep,32,-0.523409154,Colombia
+Hi_indep,32,-0.098406682,Colombia
+ML,12,0.040589549,EU-12
+Lo_indep,12,-0.189097781,EU-12
+Hi_indep,12,0.255565784,EU-12
+ML,13,-0.188393318,EU-15
+Lo_indep,13,-0.399547075,EU-15
+Hi_indep,13,0.013153384,EU-15
+ML,16,-0.327335823,European Free Trade Association
+Lo_indep,16,-0.519945479,European Free Trade Association
+Hi_indep,16,-0.074698645,European Free Trade Association
+ML,14,0.039279641,Europe_Eastern
+Lo_indep,14,-0.203440342,Europe_Eastern
+Hi_indep,14,0.239509989,Europe_Eastern
+ML,15,0.579350197,Europe_Non_EU
+Lo_indep,15,0.384174175,Europe_Non_EU
+Hi_indep,15,0.79807109,Europe_Non_EU
+ML,17,-0.181292543,India
+Lo_indep,17,-0.411885703,India
+Hi_indep,17,0.035871103,India
+ML,18,0.155062183,Indonesia
+Lo_indep,18,-0.055760121,Indonesia
+Hi_indep,18,0.37692468,Indonesia
+ML,19,0.004626019,Japan
+Lo_indep,19,-0.205172659,Japan
+Hi_indep,19,0.208515957,Japan
+ML,20,0.188505059,Mexico
+Lo_indep,20,-0.058225343,Mexico
+Hi_indep,20,0.406317647,Mexico
+ML,21,0.268005966,Middle East
+Lo_indep,21,0.068640539,Middle East
+Hi_indep,21,0.468400436,Middle East
+ML,22,-0.16491843,Pakistan
+Lo_indep,22,-0.387013182,Pakistan
+Hi_indep,22,0.05518203,Pakistan
+ML,23,0.195008338,Russia
+Lo_indep,23,-0.003661681,Russia
+Hi_indep,23,0.455009712,Russia
+ML,24,0.371752589,South Africa
+Lo_indep,24,0.160314395,South Africa
+Hi_indep,24,0.608932861,South Africa
+ML,25,-0.167016374,South America_Northern
+Lo_indep,25,-0.348067336,South America_Northern
+Hi_indep,25,0.048031399,South America_Northern
+ML,26,-0.161101088,South America_Southern
+Lo_indep,26,-0.381753585,South America_Southern
+Hi_indep,26,0.051360334,South America_Southern
+ML,27,0.182406523,South Asia
+Lo_indep,27,-0.045752472,South Asia
+Hi_indep,27,0.418989748,South Asia
+ML,29,0.033569588,Southeast Asia
+Lo_indep,29,-0.221713458,Southeast Asia
+Hi_indep,29,0.243028983,Southeast Asia
+ML,28,0.496436979,South Korea
+Lo_indep,28,0.264996099,South Korea
+Hi_indep,28,0.703020665,South Korea
+ML,30,0,Taiwan
+Lo_indep,30,0,Taiwan
+Hi_indep,30,0,Taiwan
+ML,1,-0.329446154,USA
+Lo_indep,1,-0.555838299,USA
+Hi_indep,1,-0.133494536,USA
+Lo_price,15,0.663207081,Europe_Non_EU
+Lo_price,11,0.19212793,China
+Lo_price,17,-0.167220924,India
+Lo_price,13,-0.217993424,EU-15
+Lo_price,5,0.003469909,Africa_Western
+Lo_price,1,-0.372961522,USA
+Lo_price,29,0.02325684,Southeast Asia
+Lo_price,18,0.196497567,Indonesia
+Lo_price,2,-0.29561023,Africa_Eastern
+Lo_price,27,0.162238288,South Asia
+Lo_price,7,-0.299682718,Brazil
+Lo_price,21,0.169323569,Middle East
+Lo_price,22,-0.232357009,Pakistan
+Lo_price,23,0.129341638,Russia
+Lo_price,4,-0.083544898,Africa_Southern
+Lo_price,19,0.036437017,Japan
+Lo_price,3,0.453855383,Africa_Northern
+Lo_price,20,0.215022604,Mexico
+Lo_price,12,0.077729679,EU-12
+Lo_price,10,0.20445349,Central Asia
+Lo_price,26,-0.218127426,South America_Southern
+Lo_price,14,0.043219919,Europe_Eastern
+Lo_price,9,-0.41722981,Central America and Caribbean
+Lo_price,24,0.321479187,South Africa
+Lo_price,28,0.528551099,South Korea
+Lo_price,32,-0.355389939,Colombia
+Lo_price,31,-0.075800554,Argentina
+Lo_price,8,-0.315321807,Canada
+Lo_price,25,-0.148082055,South America_Northern
+Lo_price,6,-0.43901067,Australia_NZ
+Lo_price,30,0,Taiwan
+Lo_price,16,-0.318415752,European Free Trade Association
+Hi_price,15,0.647399118,Europe_Non_EU
+Hi_price,11,0.147842989,China
+Hi_price,17,-0.106543539,India
+Hi_price,13,-0.200750845,EU-15
+Hi_price,5,-0.013733853,Africa_Western
+Hi_price,1,-0.365897517,USA
+Hi_price,29,0.025907321,Southeast Asia
+Hi_price,18,0.161917979,Indonesia
+Hi_price,2,-0.43296707,Africa_Eastern
+Hi_price,27,0.155332208,South Asia
+Hi_price,7,-0.261764034,Brazil
+Hi_price,21,0.332610908,Middle East
+Hi_price,22,-0.175632324,Pakistan
+Hi_price,23,0.164669596,Russia
+Hi_price,4,-0.102343071,Africa_Southern
+Hi_price,19,-0.028047877,Japan
+Hi_price,3,0.419987152,Africa_Northern
+Hi_price,20,0.118791671,Mexico
+Hi_price,12,0.099379669,EU-12
+Hi_price,10,0.20162919,Central Asia
+Hi_price,26,-0.109511791,South America_Southern
+Hi_price,14,0.128776295,Europe_Eastern
+Hi_price,9,-0.396824832,Central America and Caribbean
+Hi_price,24,0.315834064,South Africa
+Hi_price,28,0.55157201,South Korea
+Hi_price,32,-0.334519033,Colombia
+Hi_price,31,-0.233967332,Argentina
+Hi_price,8,-0.369287401,Canada
+Hi_price,25,-0.195904915,South America_Northern
+Hi_price,6,-0.345612075,Australia_NZ
+Hi_price,30,0,Taiwan
+Hi_price,16,-0.291097939,European Free Trade Association
+Lo_income,15,0.550596442,Europe_Non_EU
+Lo_income,11,0.258912178,China
+Lo_income,17,-0.146565227,India
+Lo_income,13,-0.154909665,EU-15
+Lo_income,5,0.065357579,Africa_Western
+Lo_income,1,-0.324101757,USA
+Lo_income,29,0.1564439,Southeast Asia
+Lo_income,18,0.22193295,Indonesia
+Lo_income,2,-0.412068936,Africa_Eastern
+Lo_income,27,0.099575671,South Asia
+Lo_income,7,-0.305593203,Brazil
+Lo_income,21,0.304421952,Middle East
+Lo_income,22,-0.212210661,Pakistan
+Lo_income,23,0.171470278,Russia
+Lo_income,4,-0.101664109,Africa_Southern
+Lo_income,19,0.089841911,Japan
+Lo_income,3,0.3847835,Africa_Northern
+Lo_income,20,0.149931061,Mexico
+Lo_income,12,0.086460455,EU-12
+Lo_income,10,0.153241164,Central Asia
+Lo_income,26,-0.244459978,South America_Southern
+Lo_income,14,0.06146748,Europe_Eastern
+Lo_income,9,-0.363446747,Central America and Caribbean
+Lo_income,24,0.381957479,South Africa
+Lo_income,28,0.505425512,South Korea
+Lo_income,32,-0.35125576,Colombia
+Lo_income,31,-0.163491577,Argentina
+Lo_income,8,-0.36158246,Canada
+Lo_income,25,-0.145322132,South America_Northern
+Lo_income,6,-0.405518998,Australia_NZ
+Lo_income,30,0,Taiwan
+Lo_income,16,-0.360753305,European Free Trade Association
+Hi_income,15,0.625734378,Europe_Non_EU
+Hi_income,11,0.281580757,China
+Hi_income,17,-0.191981837,India
+Hi_income,13,-0.128796412,EU-15
+Hi_income,5,0.041951087,Africa_Western
+Hi_income,1,-0.233481463,USA
+Hi_income,29,-0.021232975,Southeast Asia
+Hi_income,18,0.165410425,Indonesia
+Hi_income,2,-0.274523941,Africa_Eastern
+Hi_income,27,0.244120736,South Asia
+Hi_income,7,-0.152198229,Brazil
+Hi_income,21,0.27483075,Middle East
+Hi_income,22,-0.210535745,Pakistan
+Hi_income,23,0.182203401,Russia
+Hi_income,4,-0.121949437,Africa_Southern
+Hi_income,19,0.041659115,Japan
+Hi_income,3,0.404371078,Africa_Northern
+Hi_income,20,0.26347703,Mexico
+Hi_income,12,-0.005595909,EU-12
+Hi_income,10,0.071679346,Central Asia
+Hi_income,26,-0.192969095,South America_Southern
+Hi_income,14,0.142255034,Europe_Eastern
+Hi_income,9,-0.361868367,Central America and Caribbean
+Hi_income,24,0.387695136,South Africa
+Hi_income,28,0.484689433,South Korea
+Hi_income,32,-0.354170331,Colombia
+Hi_income,31,-0.073067215,Argentina
+Hi_income,8,-0.303857384,Canada
+Hi_income,25,-0.174792299,South America_Northern
+Hi_income,6,-0.392405394,Australia_NZ
+Hi_income,30,0,Taiwan
+Hi_income,16,-0.355159225,European Free Trade Association
+Lo_scale,15,0.539493075,Europe_Non_EU
+Lo_scale,11,0.210409382,China
+Lo_scale,17,-0.133000165,India
+Lo_scale,13,-0.256135264,EU-15
+Lo_scale,5,0.034168147,Africa_Western
+Lo_scale,1,-0.385536986,USA
+Lo_scale,29,0.059671505,Southeast Asia
+Lo_scale,18,0.167955671,Indonesia
+Lo_scale,2,-0.34324967,Africa_Eastern
+Lo_scale,27,0.232905109,South Asia
+Lo_scale,7,-0.315880116,Brazil
+Lo_scale,21,0.179863085,Middle East
+Lo_scale,22,-0.109225248,Pakistan
+Lo_scale,23,0.171912273,Russia
+Lo_scale,4,-0.056141808,Africa_Southern
+Lo_scale,19,0.044075648,Japan
+Lo_scale,3,0.470000594,Africa_Northern
+Lo_scale,20,0.218985689,Mexico
+Lo_scale,12,0.078492713,EU-12
+Lo_scale,10,0.138054405,Central Asia
+Lo_scale,26,-0.150440371,South America_Southern
+Lo_scale,14,0.109221977,Europe_Eastern
+Lo_scale,9,-0.326889577,Central America and Caribbean
+Lo_scale,24,0.410687491,South Africa
+Lo_scale,28,0.5779575,South Korea
+Lo_scale,32,-0.261886195,Colombia
+Lo_scale,31,-0.118367299,Argentina
+Lo_scale,8,-0.369742703,Canada
+Lo_scale,25,-0.224950037,South America_Northern
+Lo_scale,6,-0.507320992,Australia_NZ
+Lo_scale,30,0,Taiwan
+Lo_scale,16,-0.381272473,European Free Trade Association
+Hi_scale,15,0.520536019,Europe_Non_EU
+Hi_scale,11,0.210058851,China
+Hi_scale,17,-0.076653899,India
+Hi_scale,13,-0.231025575,EU-15
+Hi_scale,5,-0.105551202,Africa_Western
+Hi_scale,1,-0.292037692,USA
+Hi_scale,29,-0.017023383,Southeast Asia
+Hi_scale,18,0.20662874,Indonesia
+Hi_scale,2,-0.402921145,Africa_Eastern
+Hi_scale,27,0.168028572,South Asia
+Hi_scale,7,-0.207668529,Brazil
+Hi_scale,21,0.227694764,Middle East
+Hi_scale,22,-0.106723042,Pakistan
+Hi_scale,23,0.26277046,Russia
+Hi_scale,4,-0.16252271,Africa_Southern
+Hi_scale,19,-0.038945457,Japan
+Hi_scale,3,0.444121615,Africa_Northern
+Hi_scale,20,0.227096455,Mexico
+Hi_scale,12,-0.026465441,EU-12
+Hi_scale,10,0.128147552,Central Asia
+Hi_scale,26,-0.209547363,South America_Southern
+Hi_scale,14,0.071091899,Europe_Eastern
+Hi_scale,9,-0.393800751,Central America and Caribbean
+Hi_scale,24,0.319398551,South Africa
+Hi_scale,28,0.46816871,South Korea
+Hi_scale,32,-0.299833519,Colombia
+Hi_scale,31,-0.118525389,Argentina
+Hi_scale,8,-0.369896826,Canada
+Hi_scale,25,-0.174574145,South America_Northern
+Hi_scale,6,-0.469726424,Australia_NZ
+Hi_scale,30,0,Taiwan
+Hi_scale,16,-0.303155469,European Free Trade Association
