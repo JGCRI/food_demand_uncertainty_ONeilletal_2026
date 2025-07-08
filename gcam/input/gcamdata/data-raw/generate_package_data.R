@@ -4,7 +4,7 @@ library(devtools)
 # We could potentially use drake to speed up the process of updating the package
 # data which otherwise requires multiple runs of driver.  However, given drake
 # is optional we default to not use it.
-USE_DRIVER_DRAKE <- FALSE
+USE_DRIVER_DRAKE <- TRUE
 
 # Note: the methods below explicitly name XML tags as expected by GCAM and/or
 # the model interface headers thus will need to be maintained to be consistent.
@@ -331,6 +331,7 @@ generate_level2_data_names <- function() {
   level2_data_names[["DeleteGenericService"]] <- c("region", "gcam.consumer", "nodeInput", "building.node.input", "building.service.input", "supplysector")
   level2_data_names[["BldNodes"]] <- c("region", "gcam.consumer", "nodeInput", "building.node.input")
   level2_data_names[["DemandStapleParams"]] <- c("region", "gcam.consumer", "nodeInput", "staples.food.demand.input", "scale.param", "self.price.elasticity", "cross.price.elasticity", "income.elasticity", "income.max.term", "price.received")
+  level2_data_names[["DemandStapleParams2"]] <- c("region", "gcam.consumer", "nodeInput", "staples.food.demand.input", "scale.param", "self.price.elasticity", "cross.price.elasticity", "income.elasticity", "income.max.term","staples_FE" ,"price.received")
   level2_data_names[["DemandNonStapleParams"]] <- c("region", "gcam.consumer", "nodeInput", "non.staples.food.demand.input", "scale.param", "self.price.elasticity", "income.elasticity")
   level2_data_names[["DemandStapleRegBias"]] <- c("region", "gcam.consumer", "nodeInput", "staples.food.demand.input", "regional.bias.year", "regional.bias")
   level2_data_names[["DemandNonStapleRegBias"]] <- c("region", "gcam.consumer", "nodeInput", "non.staples.food.demand.input", "regional.bias.year", "regional.bias")
@@ -497,75 +498,4 @@ if(USE_DRIVER_DRAKE) {
   # do an initial call to ensure all targets are up to date
   driver_drake()
 }
-
-#' GCAM_DATA_MAP
-#'
-#' There are two levels of information available from the GCAM data system:
-#' chunk dependencies, which are available for "free", i.e. with a fast query to
-#' each chunk on the part of \link{\code{chunk_inputs}} and \link{\code{chunk_outputs}},
-#' and detailed information on data object-level dependencies. This function is
-#' used to generate this latter data, i.e. a tibble of chunk-output-precursor information,
-#' which is used by \link{\code{dstrace}} and various other graphing and diagnostic utilities.
-#' @author BBL
-# Note: the above text is not used for package documentation and is instead
-# replicated in data.R for that purpose.
-if(USE_DRIVER_DRAKE) {
-  # we will need to drake "plan" to construct the GCAM_DATA_MAP from cache
-  # note: calling driver_drake with return_plan_only = TRUE does not actually run the driver
-  gcamdata_plan <- driver_drake(return_plan_only = TRUE)
-  GCAM_DATA_MAP <- create_datamap_from_cache(gcamdata_plan)
-} else {
-  GCAM_DATA_MAP <- driver(return_data_map_only = TRUE)
-}
-# Save these objects as external data (i.e. requires explicit call to `data()` to load)
-usethis::use_data(GCAM_DATA_MAP, overwrite = TRUE, internal = FALSE)
-
-prebuilt_data_names <- c(
-  # outputs of module_emissions_L102.nonco2_ceds_R_S_Y
-  "L102.ceds_GFED_nonco2_tg_R_S_F",
-  "L102.ceds_GFED_nonco2_tg_C_S_F",
-  "L102.ceds_int_shipping_nonco2_tg_S_F",
-
-  # outputs of module_energy_LA101.en_bal_IEA
-  "L101.en_bal_EJ_R_Si_Fi_Yh_full",
-  "L101.en_bal_EJ_ctry_Si_Fi_Yh_full",
-  "L101.in_EJ_ctry_trn_Fi_Yh",
-  "L101.in_EJ_ctry_bld_Fi_Yh",
-
-  # output of module_energy_LA111.rsrc_fos_Prod
-  "L111.RsrcCurves_EJ_R_Ffos",
-
-  # output of module_energy_LA118.hydro
-  "L118.out_EJ_R_elec_hydro_Yfut",
-
-  # outputs of module_energy_LA121.liquids
-  "L121.in_EJ_R_unoil_F_Yh",
-  "L121.in_EJ_R_TPES_crude_Yh",
-  "L121.in_EJ_R_TPES_unoil_Yh",
-  "L121.share_R_TPES_biofuel_tech",
-  "L121.BiomassOilRatios_kgGJ_R_C",
-
-  # output of module_aglu_LA100.GTAP_downscale_ctry
-  "L100.GTAP_capital_stock"
-)
-
-#' PREBUILT_DATA
-#'
-#' A list of prebuilt data objects. These are used when the proprietary IEA
-#' energy data files are not available, and thus
-#' \code{\link{module_energy_LA100.IEA_downscale_ctry}} is not able to run.
-#' Its immediate downstream dependencies (currently, four chunks) then use the
-#' prebuilt versions of their outputs stored in this object.
-#' @author BBL
-# Note: the above text is not used for package documentation and is instead
-# replicated in data.R for that purpose.
-if(USE_DRIVER_DRAKE) {
-  PREBUILT_DATA <- load_from_cache(prebuilt_data_names)
-} else {
-  PREBUILT_DATA <- driver(write_outputs = FALSE,
-                          write_xml = FALSE,
-                          return_data_names = prebuilt_data_names)
-}
-# Save these objects as external data (i.e. requires explicit call to `data()` to load)
-usethis::use_data(PREBUILT_DATA, overwrite = TRUE, internal = FALSE)
 

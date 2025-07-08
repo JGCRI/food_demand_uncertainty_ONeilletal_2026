@@ -84,7 +84,7 @@ module_aglu_ag_an_demand_input_xml <- function(command, ...) {
       add_xml_data(L203.PriceElasticity, "PriceElasticity") %>%
       add_xml_data(L203.SubregionalShares, "SubregionalShares") %>%
       add_xml_data(L203.DemandFunction_food, "DemandFunction_food") %>%
-      add_xml_data(L203.DemandStapleParams, "DemandStapleParams") %>%
+      add_xml_data(L203.DemandStapleParams, "DemandStapleParams2") %>%
       add_xml_data(L203.DemandNonStapleParams, "DemandNonStapleParams") %>%
       add_xml_data(L203.DemandStapleRegBias, "DemandStapleRegBias") %>%
       add_xml_data(L203.DemandNonStapleRegBias, "DemandNonStapleRegBias") %>%
@@ -124,7 +124,7 @@ module_aglu_ag_an_demand_input_xml <- function(command, ...) {
       add_xml_data(L203.PriceElasticity, "PriceElasticity") %>%
       add_xml_data(L203.SubregionalShares_ConsumerGroups, "SubregionalShares_Year") %>%
       add_xml_data(L203.DemandFunction_food_ConsumerGroups, "DemandFunction_food") %>%
-      add_xml_data(L203.DemandStapleParams_ConsumerGroups, "DemandStapleParams") %>%
+      add_xml_data(L203.DemandStapleParams_ConsumerGroups, "DemandStapleParams2") %>%
       add_xml_data(L203.DemandNonStapleParams_ConsumerGroups, "DemandNonStapleParams") %>%
       add_xml_data(L203.DemandStapleRegBias, "DemandStapleRegBias") %>%
       add_xml_data(L203.DemandNonStapleRegBias, "DemandNonStapleRegBias") %>%

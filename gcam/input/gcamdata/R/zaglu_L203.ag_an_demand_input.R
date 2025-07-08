@@ -103,7 +103,8 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
       assign(nm, get_data(all_data, d, strip_attributes = T),
              envir = parent.env(environment()))  })
     
-   scenario <- "HD_Qtot"
+   scenario <- 100
+   scenario <- "LD_Qtot"
     FE_params <- read.csv("staples_FE.csv")%>%
                  filter(measure== scenario)
     #write.csv(FE_params,"test_params.csv")
@@ -566,6 +567,43 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
              nodeInput = "FoodDemand") %>%
       select(region, gcam.consumer, nodeInput, input, year, base.service) %>%
       left_join(L106.income_distributions, by = c("region", "year", "gcam.consumer")) -> new_base_service
+
+   new_base_service%>%
+      left_join(population_income_groups%>%select(-subregional.population.share)%>%mutate(gcam.consumer = gsub("d", "FoodDemand_Group", gcam.consumer)), by = c("region", "year","gcam.consumer")) %>%
+      mutate(min_value= ifelse(input=="FoodDemand_Staples",0.6*365*totalPop*1e-9*1000,0.01*365*totalPop*1e-9*1000),
+             diff=base.service-min_value,
+             diff=ifelse(diff >0,0,diff))->new_base_service_test
+
+  new_base_service_test%>% filter(diff <0)->neg_values
+
+  while (nrow(neg_values)>0){
+  print("Seeing values for deciles below thresholds. Going to try re-allocation")
+  
+#First start by compiling neg_values
+
+
+
+new_base_service_test%>% 
+    mutate(candidate=ifelse(base.service>min_value*1.1,1,0))%>%
+    group_by(region, year, input)%>%
+    mutate(candidate=sum(candidate),
+           diff= sum(diff))%>%
+    ungroup()%>%  
+    #group_by(region, year, input)%>%
+    mutate(base.service=ifelse(base.service < min_value,base.service+(min_value- base.service),ifelse(base.service>min_value*1.1,base.service+(diff/candidate),base.service)))%>%
+    #ungroup()%>%
+    mutate(diff=base.service-min_value,
+           diff=ifelse(diff >0,0,diff))->new_base_service_test
+ 
+  new_base_service_test%>% filter(diff <0)->neg_values 
+      
+  
+  }
+      
+write.csv(new_base_service_test, "new_data.csv")
+write.csv(new_base_service, "old_data.csv")
+
+new_base_service <- new_base_service_test 
 
     # Split up staples and nonstaples tables
     new_base_service %>%
