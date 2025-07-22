@@ -544,6 +544,8 @@ DeleteGenericService, world/+{name}region, region/+{name}gcam-consumer, gcam-con
 
 DemandStapleParams, world/+{name}region, region/+{name}gcam-consumer, gcam-consumer/+{name}nodeInput, nodeInput/+{name}staples-food-demand-input, staples-food-demand-input/+scale-param, staples-food-demand-input/+self-price-elasticity, staples-food-demand-input/+cross-price-elasticity, staples-food-demand-input/+income-elasticity, staples-food-demand-input/+income-max-term, nodeInput/+price-received, scenario, scenario/world
 
+DemandStapleParams2, world/+{name}region, region/+{name}gcam-consumer, gcam-consumer/+{name}nodeInput, nodeInput/+{name}staples-food-demand-input, staples-food-demand-input/+scale-param, staples-food-demand-input/+self-price-elasticity, staples-food-demand-input/+cross-price-elasticity, staples-food-demand-input/+income-elasticity, staples-food-demand-input/+income-max-term,staples-food-demand-input/+staples_FE ,nodeInput/+price-received, scenario, scenario/world
+
 DemandStapleRegBias, world/+{name}region, region/+{name}gcam-consumer, gcam-consumer/+{name}nodeInput, nodeInput/+{name}staples-food-demand-input, staples-food-demand-input/+{year}regional-bias, staples-food-demand-input/+regional-bias, scenario, scenario/world
 
 StapleBaseService, world/+{name}region, region/+{name}gcam-consumer, gcam-consumer/+{name}nodeInput, nodeInput/+{name}staples-food-demand-input, staples-food-demand-input/+{year}base-service, staples-food-demand-input/+base-service, scenario, scenario/world
