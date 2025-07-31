@@ -136,6 +136,7 @@ double FoodDemandFunction::calcDemand( InputSet& aInput, double income, const st
         // calculate the first part of the equation: A * x^h(x) (note calcIncomeTerm will
         // calculate all of x^h(x) as there is implicitly a scale term included there)
         double currDemand = foodInputs[i]->getScaleParam() * foodInputs[i]->calcIncomeTerm( adjIncome );
+        
         //We need to ensure that non zero demands are set to 0
         
         // calculate the price terms of the equations MULT_j(w_j ^ e_ij(x))
@@ -149,7 +150,7 @@ double FoodDemandFunction::calcDemand( InputSet& aInput, double income, const st
             // becomes, the higher the demand
             currDemand = SectorUtils::adjustDemandForNegativePrice( currDemand, adjPrices[i] );
         }
-        //currDemand = currDemand+ foodInputs[i]->getRegionalBias( aPeriod ) +foodInputs[i]->getStaplesFixedEffect();
+        currDemand = currDemand+ foodInputs[i]->getRegionalBias( aPeriod ) +foodInputs[i]->getStaplesFixedEffect();
         currDemand= std::max(currDemand,0.0);
         demands[i] = currDemand;
         // the demand for materials is just the residual of the food demand:
@@ -191,7 +192,7 @@ double FoodDemandFunction::calcDemand( InputSet& aInput, double income, const st
     //KBN trying some changes here
     
     for( size_t i = 0; i < aInput.size(); ++i ) {
-        demands[i]=demands[i] + foodInputs[i]->getRegionalBias( aPeriod ) +foodInputs[i]->getStaplesFixedEffect();
+        //demands[i]=demands[i] + foodInputs[i]->getRegionalBias( aPeriod ) +foodInputs[i]->getStaplesFixedEffect();
         demands[i]= std::max(demands[i],0.0);
         foodInputs[i]->setPhysicalDemand( demands[i], aRegionName, aPeriod );
         foodInputs[i]->setActualShare( alphaActual[i], aRegionName, aPeriod );
