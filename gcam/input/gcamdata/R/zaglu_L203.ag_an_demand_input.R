@@ -24,7 +24,7 @@
 #' @importFrom dplyr bind_rows filter if_else group_by lag left_join mutate select summarise
 #' @importFrom tidyr gather replace_na spread
 #' @author RC July 2017 XZ 2022
-module_aglu_L203.ag_an_demand_input <- function(command, ...) {
+module_aglu_L203.ag_an_demand_input <- function(command, ...,scenario="HD_Qtot") {
 
   MODULE_INPUTS <-
     c(FILE = "common/GCAM_region_names",
@@ -81,7 +81,8 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
              "L203.IncomeElasticity",
              "L203.PriceElasticity",
              "L203.FuelPrefElast_ssp1",
-             "L203.GlobalTechInterp_demand"))
+             "L203.GlobalTechInterp_demand",
+             "L203.Global_food_dem_mult"))
   } else if(command == driver.MAKE) {
 
     all_data <- list(...)[[1]]
@@ -93,7 +94,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
       non.staples.food.demand.input <- subsector <- NULL   # silence package check notes
     #AAAA
     # Load required inputs ----
-    
+
     #Making some updates
     temp_val <- 0.1
     lapply(MODULE_INPUTS, function(d){
@@ -102,9 +103,8 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
       # get data and assign
       assign(nm, get_data(all_data, d, strip_attributes = T),
              envir = parent.env(environment()))  })
-    
-   scenario <- 100
-   scenario <- "LD_Qtot"
+
+
     FE_params <- read.csv("staples_FE.csv")%>%
                  filter(measure== scenario)
     #write.csv(FE_params,"test_params.csv")
@@ -379,7 +379,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
       filter(!region %in% aglu.NO_AGLU_REGIONS) %>%
       select(LEVEL2_DATA_NAMES[["SubregionalShares_Year"]])
 
-    print(head(L203.SubregionalShares_ConsumerGroups))
+    #print(head(L203.SubregionalShares_ConsumerGroups))
 
     # ONE CONSUMER: Demand function and parameters
     L203.DemandFunction_food <- A_demand_food_staples %>%
@@ -488,9 +488,9 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
              Y = pc_GDP_groups) -> ambrosia_data
 
     # Food demand parameters to use in ambrosia (tested and matches GCAM output)
-  
- params <- read.csv("9_params.csv") %>% 
-          filter(measure==scenario) %>% 
+
+ params <- read.csv("9_params.csv") %>%
+          filter(measure==scenario) %>%
           gather(param,value,"As":"pnscl")
 
     param_vector <- c(params$value)
@@ -505,7 +505,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
     library(ambrosia)
 
     # Run ambrosia function
-    
+
     ambrosia_data %>% left_join(FE_params)->ambrosia_data
     ambrosia_results <- food.dmnd(ambrosia_data$Ps, ambrosia_data$Pn, ambrosia_data$Y, params = vec2param(param_vector),staples_FE= ambrosia_data$staples_FE)
     #write.csv(ambrosia_data, "ambrosia_data2.csv")
@@ -527,7 +527,7 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
              Units = "Pcal/year",
              gcam.consumer = gsub("d", "FoodDemand_Group", gcam.consumer)) -> food_demand_am
 
-    write.csv(food_demand_am,"food_demand_am_updated2.csv")
+    #write.csv(food_demand_am,"food_demand_am_updated2_first_pass.csv")
     # Calculating regional bias: Difference between ambrosia calculated value and actual food demand in base years
     # Bias gets evenly distributed across income groups
     # Bias in final base year gets carried forward to all future years
@@ -552,13 +552,64 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
              partial_difference = difference*unique(L106.income_distributions$subregional.population.share)) %>%
       select(region, year, partial_difference, input) -> regional_bias
 
+
+
     # Convert to kcal per capita per day
     regional_bias %>%
       left_join(population_income_groups, by = c("region", "year")) %>%
-      mutate(partial_difference = partial_difference/365/totalPop*1e9 )-> pc_regional_bias
+      mutate(partial_difference = partial_difference/365/totalPop*1e9/1000) %>%
+      select(-totalPop,-subregional.population.share) %>%
+      spread(input,partial_difference) %>%
+      select(region,year,gcam.consumer,staple_bias=FoodDemand_Staples,non_staple_bias=FoodDemand_NonStaples)-> pc_regional_bias
 
     #write the bias
-    write.csv(pc_regional_bias, "pc_regional_bias.csv")
+    #write.csv(pc_regional_bias, "pc_regional_bias.csv")
+
+    #Second pass at calculating demand now
+    ambrosia_data %>% left_join(pc_regional_bias)->ambrosia_data
+    ambrosia_results <- food.dmnd(ambrosia_data$Ps, ambrosia_data$Pn, ambrosia_data$Y, params = vec2param(param_vector),staples_FE= ambrosia_data$staples_FE,bias_adder_s =ambrosia_data$staple_bias,
+                                  bias_adder_ns = ambrosia_data$non_staple_bias)
+    #write.csv(ambrosia_data, "ambrosia_data2.csv")
+    # Process results
+    ambrosia_results %>%
+      rename(FoodDemand_Staples = Qs,
+             FoodDemand_NonStaples = Qn) %>%
+      mutate(year = ambrosia_data$year,
+             pc_GDP = ambrosia_data$Y,
+             region = ambrosia_data$region,
+             gcam.consumer = ambrosia_data$gcam.consumer,
+             model = "Ambrosia") %>%
+      #left_join(FE_params) %>%
+      select(-Qm, -alpha.s, -alpha.n, -alpha.m) %>%
+      mutate(Units = "Kcal/per/day") %>%
+      tidyr::gather(input, value, -c("year", "pc_GDP", "gcam.consumer", "region", "model", "Units")) %>%
+      left_join(population_income_groups, by = c("region", "year", "gcam.consumer")) %>%
+      mutate(value = value * totalPop * 1e-9 * 365*1000,
+             Units = "Pcal/year",
+             gcam.consumer = gsub("d", "FoodDemand_Group", gcam.consumer)) -> food_demand_am
+
+    #write.csv(food_demand_am,"food_demand_am_updated2.csv")
+
+
+    # Get total calculated demand for staples and nonstaples (ignore groups)
+    food_demand_am %>%
+      select(-gcam.consumer, -totalPop, -pc_GDP, -model) %>%
+      group_by(region, year, Units, input) %>%
+      summarize(value = sum(value)) -> total_demand_by_type
+
+    # Get GCAM base year data (observed values)
+    L203.StapleBaseService %>%
+      rename(input = staples.food.demand.input) -> GCAM_staple_demand
+    L203.NonStapleBaseService %>%
+      rename(input = non.staples.food.demand.input) -> GCAM_nonstaple_demand
+    bind_rows(GCAM_staple_demand, GCAM_nonstaple_demand) -> GCAM_base_demand
+
+    # Give each group equal share of bias
+    # Join and calculate difference
+    left_join(GCAM_base_demand, total_demand_by_type, by = c("region", "year", "input")) %>%
+      mutate(difference = base.service - value,
+             partial_difference = difference*unique(L106.income_distributions$subregional.population.share)) %>%
+      select(region, year, partial_difference, input) -> regional_bias
 
     # Combine regional bias back with ambrosia output to get total output to match GCAM's in the base years
     # Add income and pop shares
@@ -567,6 +618,10 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
              nodeInput = "FoodDemand") %>%
       select(region, gcam.consumer, nodeInput, input, year, base.service) %>%
       left_join(L106.income_distributions, by = c("region", "year", "gcam.consumer")) -> new_base_service
+    #save bias values here
+
+
+
 
    new_base_service%>%
       left_join(population_income_groups%>%select(-subregional.population.share)%>%mutate(gcam.consumer = gsub("d", "FoodDemand_Group", gcam.consumer)), by = c("region", "year","gcam.consumer")) %>%
@@ -575,35 +630,39 @@ module_aglu_L203.ag_an_demand_input <- function(command, ...) {
              diff=ifelse(diff >0,0,diff))->new_base_service_test
 
   new_base_service_test%>% filter(diff <0)->neg_values
+  #write.csv(neg_values, "neg_values_initial.csv")
 
   while (nrow(neg_values)>0){
   print("Seeing values for deciles below thresholds. Going to try re-allocation")
-  
+
 #First start by compiling neg_values
 
 
 
-new_base_service_test%>% 
+new_base_service_test%>%
     mutate(candidate=ifelse(base.service>min_value*1.1,1,0))%>%
     group_by(region, year, input)%>%
     mutate(candidate=sum(candidate),
            diff= sum(diff))%>%
-    ungroup()%>%  
+    ungroup()%>%
     #group_by(region, year, input)%>%
     mutate(base.service=ifelse(base.service < min_value,base.service+(min_value- base.service),ifelse(base.service>min_value*1.1,base.service+(diff/candidate),base.service)))%>%
     #ungroup()%>%
     mutate(diff=base.service-min_value,
            diff=ifelse(diff >0,0,diff))->new_base_service_test
- 
-  new_base_service_test%>% filter(diff <0)->neg_values 
-      
-  
-  }
-      
-write.csv(new_base_service_test, "new_data.csv")
-write.csv(new_base_service, "old_data.csv")
 
-new_base_service <- new_base_service_test 
+  new_base_service_test%>% filter(diff <0)->neg_values
+
+
+  }
+
+#write.csv(new_base_service_test, "new_data.csv")
+#write.csv(new_base_service, "old_data.csv")
+
+
+new_base_service <- new_base_service_test
+
+
 
     # Split up staples and nonstaples tables
     new_base_service %>%
@@ -676,6 +735,11 @@ new_base_service <- new_base_service_test
       add_precursors("common/GCAM_region_names",
                      "aglu/A_demand_technology") ->
       L203.StubTech_demand_nonfood
+
+    L203.GlobalTechCoef_demand %>%
+      left_join(read.csv("multipliers_food.csv")) %>%
+      select(-coefficient)->L203.Global_food_dem_mult
+
 
     L203.GlobalTechCoef_demand %>%
       add_title("Input names of agriculture demand technologies") %>%
@@ -914,6 +978,50 @@ new_base_service <- new_base_service_test
       add_precursors("aglu/A_demand_food_nonstaples", "aglu/A_demand_food_base_service") ->
       L203.NonStapleBaseService_ConsumerGroups
 
+    xml_name <- paste0("ag_an_demand_input_multiple_consumers",scenario,".xml")
+
+    create_xml(xml_name) %>%
+      add_logit_tables_xml(L203.Supplysector_demand, "Supplysector") %>%
+      add_logit_tables_xml_generate_levels(L203.SubsectorAll_demand_food,
+                                           "SubsectorLogit","subsector","nesting-subsector",1,FALSE) %>%
+      add_xml_data_generate_levels(L203.StubTech_demand_food, "StubTech","subsector","nesting-subsector",1,FALSE) %>%
+      add_xml_data_generate_levels(L203.StubTechProd_food, "StubTechProd", "subsector","nesting-subsector",1,FALSE) %>%
+      add_xml_data_generate_levels(L203.StubCalorieContent, "StubCalorieContent", "subsector","nesting-subsector",1,FALSE) %>%
+      add_node_equiv_xml("subsector") %>%
+      add_logit_tables_xml(L203.NestingSubsectorAll_demand_food, "SubsectorAll", "SubsectorLogit") %>%
+      add_logit_tables_xml(L203.SubsectorAll_demand_nonfood, "SubsectorAll", "SubsectorLogit") %>%
+      add_xml_data(L203.StubTech_demand_nonfood, "StubTech") %>%
+      add_xml_data(L203.GlobalTechCoef_demand, "GlobalTechCoef") %>%
+      add_xml_data(L203.Global_food_dem_mult, "GlobalTechInputPMult") %>%
+      add_xml_data(L203.GlobalTechShrwt_demand, "GlobalTechShrwt") %>%
+      add_xml_data(L203.GlobalTechInterp_demand, "GlobalTechInterp") %>%
+      add_xml_data(L203.StubTechProd_nonfood_crop, "StubTechProd") %>%
+      add_xml_data(L203.StubTechProd_nonfood_meat, "StubTechProd") %>%
+      add_xml_data(L203.StubTechProd_For, "StubTechProd") %>%
+      add_xml_data(L203.PerCapitaBased, "PerCapitaBased") %>%
+      add_xml_data(L203.BaseService, "BaseService") %>%
+      add_xml_data(L203.IncomeElasticity, "IncomeElasticity") %>%
+      add_xml_data(L203.PriceElasticity, "PriceElasticity") %>%
+      add_xml_data(L203.SubregionalShares_ConsumerGroups, "SubregionalShares_Year") %>%
+      add_xml_data(L203.DemandFunction_food_ConsumerGroups, "DemandFunction_food") %>%
+      add_xml_data(L203.DemandStapleParams_ConsumerGroups, "DemandStapleParams2") %>%
+      add_xml_data(L203.DemandNonStapleParams_ConsumerGroups, "DemandNonStapleParams") %>%
+      add_xml_data(L203.DemandStapleRegBias, "DemandStapleRegBias") %>%
+      add_xml_data(L203.DemandNonStapleRegBias, "DemandNonStapleRegBias") %>%
+      add_xml_data(L203.StapleBaseService_ConsumerGroups, "StapleBaseService") %>%
+      add_xml_data(L203.NonStapleBaseService_ConsumerGroups, "NonStapleBaseService") %>%
+      add_precursors("L203.Supplysector_demand", "L203.SubsectorAll_demand", "L203.StubTech_demand",
+                     "L203.GlobalTechCoef_demand", "L203.GlobalTechShrwt_demand", "L203.StubTechProd_food",
+                     "L203.StubTechProd_nonfood_crop", "L203.StubTechProd_nonfood_meat",
+                     "L203.StubTechProd_For", "L203.StubCalorieContent", "L203.PerCapitaBased",
+                     "L203.BaseService", "L203.IncomeElasticity", "L203.PriceElasticity",
+                     "L203.SubregionalShares_ConsumerGroups", "L203.DemandFunction_food_ConsumerGroups", "L203.DemandStapleParams_ConsumerGroups",
+                     "L203.DemandNonStapleParams_ConsumerGroups", "L203.DemandStapleRegBias", "L203.DemandNonStapleRegBias",
+                     "L203.StapleBaseService_ConsumerGroups", "L203.NonStapleBaseService_ConsumerGroups",
+                     "L203.Global_food_dem_mult") %>%
+      gcamdata::run_xml_conversion()
+
+
     return_data(L203.Supplysector_demand, L203.NestingSubsectorAll_demand_food, L203.SubsectorAll_demand_food,
                 L203.SubsectorAll_demand_nonfood, L203.StubTech_demand_food, L203.StubTech_demand_nonfood,
                 L203.GlobalTechCoef_demand, L203.GlobalTechShrwt_demand, L203.GlobalTechInterp_demand, L203.StubTechProd_food,
@@ -923,7 +1031,8 @@ new_base_service <- new_base_service_test
                 L203.SubregionalShares, L203.DemandFunction_food, L203.DemandStapleParams, L203.DemandNonStapleParams,
                 L203.DemandStapleRegBias, L203.DemandNonStapleRegBias, L203.StapleBaseService, L203.NonStapleBaseService,
                 L203.SubregionalShares_ConsumerGroups, L203.DemandFunction_food_ConsumerGroups, L203.DemandStapleParams_ConsumerGroups,
-                L203.DemandNonStapleParams_ConsumerGroups,L203.StapleBaseService_ConsumerGroups, L203.NonStapleBaseService_ConsumerGroups)
+                L203.DemandNonStapleParams_ConsumerGroups,L203.StapleBaseService_ConsumerGroups, L203.NonStapleBaseService_ConsumerGroups,
+                L203.Global_food_dem_mult)
   } else {
     stop("Unknown command")
   }

@@ -31,6 +31,7 @@ module_aglu_ag_an_demand_input_xml <- function(command, ...) {
       "L203.IncomeElasticity",
       "L203.PriceElasticity",
       "L203.SubregionalShares",
+      "L203.Global_food_dem_mult",
 	  "L203.SubregionalShares_ConsumerGroups",
       "L203.DemandFunction_food",
 	  "L203.DemandFunction_food_ConsumerGroups",
@@ -113,6 +114,7 @@ module_aglu_ag_an_demand_input_xml <- function(command, ...) {
       add_logit_tables_xml(L203.SubsectorAll_demand_nonfood, "SubsectorAll", "SubsectorLogit") %>%
       add_xml_data(L203.StubTech_demand_nonfood, "StubTech") %>%
       add_xml_data(L203.GlobalTechCoef_demand, "GlobalTechCoef") %>%
+    add_xml_data(L203.Global_food_dem_mult, "GlobalTechInputPMult") %>%
       add_xml_data(L203.GlobalTechShrwt_demand, "GlobalTechShrwt") %>%
       add_xml_data(L203.GlobalTechInterp_demand, "GlobalTechInterp") %>%
       add_xml_data(L203.StubTechProd_nonfood_crop, "StubTechProd") %>%
@@ -137,7 +139,8 @@ module_aglu_ag_an_demand_input_xml <- function(command, ...) {
                      "L203.BaseService", "L203.IncomeElasticity", "L203.PriceElasticity",
                      "L203.SubregionalShares_ConsumerGroups", "L203.DemandFunction_food_ConsumerGroups", "L203.DemandStapleParams_ConsumerGroups",
                      "L203.DemandNonStapleParams_ConsumerGroups", "L203.DemandStapleRegBias", "L203.DemandNonStapleRegBias",
-                     "L203.StapleBaseService_ConsumerGroups", "L203.NonStapleBaseService_ConsumerGroups") ->
+                     "L203.StapleBaseService_ConsumerGroups", "L203.NonStapleBaseService_ConsumerGroups",
+                     "L203.Global_food_dem_mult") ->
       ag_an_demand_input_multiple_consumers.xml
 
     return_data(ag_an_demand_input.xml, ag_an_demand_input_multiple_consumers.xml)
