@@ -1,0 +1,25 @@
+# File: A_demand_food_staples.csv
+# Title: Final demand (gcam-consumer) info
+# Units: Various
+# Description: Info related to gcam-consumer objects
+# Source: RYC STW and RPL analysis
+# Column types: ccccnnnnnnc
+# ----------
+gcam.consumer,nodeInput,prodDmdFnType,staples.food.demand.input,scale.param,self.price.elasticity,cross.price.elasticity,income.elasticity,income.max.term,price.received,measure
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.470045269,0.036703062,0.146247848,0.035896347,2.730108178,5.040872052,HD_Qs
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.148814906,-0.160627672,0.125401275,0.097805292,2.735121737,5.107823674,LD_Qs
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.364616691,-0.121846997,0.257959914,0.082083068,2.738337791,5.007788532,HD_Qn
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.249995031,-0.154718661,0.043964511,0.001670562,2.730451457,5.111985556,LD_Qn
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.355028165,0.00501938,0.082856126,0.025084269,2.733206383,4.985135664,HD_Qtot
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.229352611,-0.064102556,0.088813337,0.201227091,2.732386011,4.944989522,LD_Qtot
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.413109845,0.048639459,0.185282007,0.029289706,2.729381714,5.081115822,HD_QsQn
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.271327103,-0.173168318,0.016258433,0.178231412,2.734174938,5.079450404,LD_QsQn
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.311576801,-0.087561716,0.109657365,0.05741873,2.73337579,5.030815684,ML
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.115237887,-0.280481491,-0.098147912,6.72E-07,2.720453074,4.790218288,Lo_indep
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.533375668,0.098986325,0.318700118,0.181423536,2.748269859,5.265219488,Hi_indep
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.368900565,-0.245138863,0.032376891,0.08518332,2.741223504,5.087867376,Lo_price
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.229058965,-0.0156343,0.188470052,0.131015436,2.739568436,4.989379465,Hi_price
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.360009727,-0.131416636,0.227572113,0.011475558,2.728724646,5.076333345,Lo_income
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.302114266,-0.106512951,0.122462356,0.176693036,2.736321176,4.975274211,Hi_income
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.232003253,-0.066295287,0.215751943,0.115707966,2.73102483,5.060585673,Lo_scale
+FoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.371443802,-0.108920453,-0.009909559,0.066518458,2.733585471,5.027689252,Hi_scale

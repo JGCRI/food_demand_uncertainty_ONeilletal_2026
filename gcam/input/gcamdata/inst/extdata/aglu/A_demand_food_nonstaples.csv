@@ -1,0 +1,25 @@
+# File: A_demand_food_nonstaples.csv
+# Title: Final demand (gcam-consumer) info
+# Units: Various
+# Description: Info related to gcam-consumer objects
+# Source: RYC STW and RPL analysis
+# Column types: cccnnnc
+# ----------
+gcam.consumer,nodeInput,non.staples.food.demand.input,scale.param,self.price.elasticity,income.elasticity,measure
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.112125172,-0.198908975,0.991312042,HD_Qs
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.143202598,-0.135228105,0.970683128,LD_Qs
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.23633507,-0.235078353,0.973955838,HD_Qn
+FoodDemand,FoodDemand,FoodDemand_NonStaples,0.923076486,-0.132256096,0.992475338,LD_Qn
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.204262799,-0.169875431,1.260679322,HD_Qtot
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.150830272,-0.111426939,0.774237504,LD_Qtot
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.230042952,-0.20852191,1.14007292,HD_QsQn
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.06507561,-0.103276295,0.917351716,LD_QsQn
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.117867378,-0.151320888,0.97778872,ML
+FoodDemand,FoodDemand,FoodDemand_NonStaples,0.922017131,-0.362747139,0.61077039,Lo_indep
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.312858463,0.051584376,1.352546886,Hi_indep
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.119014086,-0.231271867,1.107793892,Lo_price
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.163791062,-0.063757594,0.859345156,Hi_price
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.126323632,-0.129676371,0.80874959,Lo_income
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.079147628,-0.09586357,1.078004934,Hi_income
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.051722681,-0.094760447,1.04345126,Lo_scale
+FoodDemand,FoodDemand,FoodDemand_NonStaples,1.192353282,-0.108877793,1.075589338,Hi_scale
